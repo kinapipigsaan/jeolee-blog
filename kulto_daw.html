@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f4efe5">
+<title>JeoLee — The Pages We Were Never Promised</title>
+<style>
+:root{
+  --paper:#f4efe5;--paper2:#fbf8f1;--ink:#303b43;--muted:#737b7d;
+  --blue:#718b9b;--blue-dark:#4e6878;--line:#d9d3c8;--gold:#c5a77b;
+  --serif:Georgia,"Times New Roman",serif;--sans:Arial,Helvetica,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);line-height:1.75}
+a{color:inherit;text-decoration:none}
+.nav{position:sticky;top:0;z-index:10;background:rgba(244,239,229,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav-inner{max-width:1100px;margin:auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+.brand{font-size:1.15rem;letter-spacing:.12em;color:var(--blue-dark)}
+.nav-links{display:flex;gap:27px;font: .78rem var(--sans);letter-spacing:.13em;text-transform:uppercase;color:var(--muted)}
+.nav-links a:hover{color:var(--blue-dark)}
+.menu-btn{display:none;border:1px solid var(--line);background:transparent;color:var(--ink);padding:7px 11px;font:inherit}
+.hero{min-height:610px;position:relative;overflow:hidden;display:grid;place-items:center;text-align:center;padding:90px 24px 110px;background:linear-gradient(180deg,#d9e0df 0%,#e9e4d9 57%,#d8c9b6 100%)}
+.hero:before{content:"";position:absolute;width:230px;height:230px;border-radius:50%;background:#e8d6b6;opacity:.9;top:85px;left:calc(50% - 115px);box-shadow:0 0 70px rgba(232,214,182,.5)}
+.hills{position:absolute;bottom:-2px;left:0;width:100%;height:210px}
+.hero-content{position:relative;z-index:1;max-width:780px}
+.eyebrow{font: .72rem var(--sans);letter-spacing:.28em;text-transform:uppercase;color:#5e747d}
+.hero h1{font-size:clamp(3.3rem,9vw,6.7rem);font-weight:400;letter-spacing:.06em;margin:14px 0 2px;color:#354954}
+.subtitle{font-size:clamp(1.05rem,2.4vw,1.45rem);font-style:italic;color:#536873;margin:0}
+.byline{margin-top:28px;font: .76rem var(--sans);letter-spacing:.22em;text-transform:uppercase;color:#536873}
+.hero-note{margin-top:52px;font-size:.88rem;font-style:italic;color:#586d73}
+main{max-width:900px;margin:auto;padding:0 24px}
+section{padding:90px 0;border-bottom:1px solid var(--line)}
+.section-kicker{text-align:center;font: .7rem var(--sans);letter-spacing:.25em;text-transform:uppercase;color:var(--blue)}
+h2{text-align:center;font-size:2.15rem;font-weight:400;margin:9px 0 25px;color:var(--blue-dark)}
+.intro{max-width:680px;margin:0 auto;text-align:center;font-size:1.12rem;color:#566168}
+.quote{max-width:720px;margin:42px auto 0;padding:28px 30px;border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);text-align:center;font-size:1.35rem;font-style:italic;color:#586d78}
+.quote small{display:block;margin-top:13px;font: .72rem var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.chapter-list{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:38px}
+.chapter-card{display:block;padding:24px 25px;background:rgba(255,255,255,.36);border:1px solid var(--line);transition:.2s}
+.chapter-card:hover{transform:translateY(-3px);border-color:var(--blue)}
+.chapter-no{font: .68rem var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--blue)}
+.chapter-card h3{font-size:1.28rem;font-weight:400;margin:7px 0}
+.chapter-card p{margin:0;color:var(--muted);font-size:.9rem}
+.status{display:inline-block;margin-top:13px;font: .65rem var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--blue-dark)}
+.reading{max-width:720px;margin:auto}
+.chapter-heading{text-align:center;margin-bottom:44px}
+.chapter-heading .chapter-no{display:block}
+.chapter-heading h2{font-size:2.3rem;margin:9px 0}
+.chapter-heading .chapter-sub{font-style:italic;color:var(--muted)}
+.story h3{font-size:1.28rem;font-weight:400;color:var(--blue-dark);margin:36px 0 10px}
+.story p{font-size:1.06rem;margin:0 0 17px;color:#424d52}
+.story .ending{text-align:center;font-style:italic;font-size:1.2rem;margin-top:32px;color:var(--blue-dark)}
+.signature{text-align:right;margin-top:28px;font-style:italic;color:var(--muted)}
+.author-note{max-width:680px;margin:auto;text-align:center;color:#566168}
+.disclaimer{font: .78rem/1.8 var(--sans);color:var(--muted);text-align:center;max-width:700px;margin:25px auto 0}
+footer{text-align:center;padding:38px 20px 48px;color:var(--muted);font: .72rem var(--sans);letter-spacing:.12em}
+footer span{display:block;margin-top:8px;font:italic 1rem var(--serif);letter-spacing:0;color:var(--blue-dark)}
+@media(max-width:650px){
+ .nav-inner{padding:12px 18px}.menu-btn{display:block}
+ .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--paper2);padding:18px 24px 22px;border-bottom:1px solid var(--line);flex-direction:column;gap:16px}
+ .nav-links.open{display:flex}
+ .hero{min-height:550px;padding-top:75px}.hills{height:150px}
+ section{padding:68px 0}h2{font-size:1.85rem}
+ .chapter-list{grid-template-columns:1fr}
+ .story p{font-size:1rem}
+}
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#home">JEOLEE</a>
+    <button class="menu-btn" aria-label="Toggle navigation" aria-expanded="false" onclick="toggleMenu()">Menu ☰</button>
+    <nav class="nav-links" id="navLinks">
+      <a href="#about" onclick="closeMenu()">About</a>
+      <a href="#chapters" onclick="closeMenu()">Chapters</a>
+      <a href="#read" onclick="closeMenu()">Read</a>
+      <a href="#author" onclick="closeMenu()">The Author</a>
+    </nav>
+  </div>
+</header>
+
+<header class="hero" id="home">
+  <svg class="hills" viewBox="0 0 1440 260" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 130 Q210 20 430 130 T860 110 T1440 100 L1440 260 L0 260Z" fill="#9eaaa4" opacity=".62"/>
+    <path d="M0 175 Q260 75 520 175 T1030 150 T1440 160 L1440 260 L0 260Z" fill="#7e9290" opacity=".65"/>
+    <path d="M0 205 Q260 135 560 205 T1100 185 T1440 195 L1440 260 L0 260Z" fill="#637c7e" opacity=".72"/>
+  </svg>
+  <div class="hero-content">
+    <div class="eyebrow">A story told one page at a time</div>
+    <h1>JeoLee</h1>
+    <p class="subtitle">The Pages We Were Never Promised</p>
+    <div class="byline">A fan-written story · E.El</div>
+    <p class="hero-note">Some stories are meaningful, even without a promised ending.</p>
+  </div>
+</header>
+
+<main>
+  <section id="about">
+    <div class="section-kicker">A little about this book</div>
+    <h2>Some stories stay with us.</h2>
+    <p class="intro">A collection of pages inspired by Jeo and Gehlee—their meeting, the moments along the way, and the story that readers may choose to remember. This is a fan-written work, created with appreciation and respect.</p>
+    <blockquote class="quote">“You don’t have to own the ending of a story to appreciate the beauty of its chapters.”<small>— E.El</small></blockquote>
+  </section>
+
+  <section id="chapters">
+    <div class="section-kicker">Turn the page</div>
+    <h2>Chapters</h2>
+    <p class="intro">Every story begins somewhere. Start from the first page and follow the moments as they unfold.</p>
+    <div class="chapter-list">
+      <a class="chapter-card" href="#chapter1">
+        <div class="chapter-no">Chapter I</div><h3>When Two Worlds Crossed</h3>
+        <p>Two different journeys meet in one unexpected place.</p><span class="status">Read chapter ↓</span>
+      </a>
+      <a class="chapter-card" href="#chapter2">
+        <div class="chapter-no">Chapter II</div><h3>Unfamiliar Faces, Familiar Moments</h3>
+        <p>The small beginnings of getting to know someone.</p><span class="status">Read chapter ↓</span>
+      </a>
+      <div class="chapter-card"><div class="chapter-no">Chapter III</div><h3>The Little Things</h3><p>The small moments that made the story memorable.</p><span class="status">Coming soon</span></div>
+      <div class="chapter-card"><div class="chapter-no">Chapter IV</div><h3>A Story Beyond the Pages</h3><p>When a story finds its readers.</p><span class="status">Coming soon</span></div>
+      <div class="chapter-card"><div class="chapter-no">Chapter V</div><h3>The Pages Yet to Come</h3><p>An ending that remains unwritten.</p><span class="status">Coming soon</span></div>
+    </div>
+  </section>
+
+  <section id="read">
+    <article class="reading" id="chapter1">
+      <div class="chapter-heading"><span class="chapter-no">Chapter I</span><h2>When Two Worlds Crossed</h2><div class="chapter-sub">The beginning of an unexpected story</div></div>
+      <div class="story">
+        <h3>The Boy Who Loved the Unknown</h3>
+        <p>Some people are content with the world they already know. Others spend their lives wondering what lies beyond it.</p>
+        <p>Jeo was the kind of boy who belonged to the latter.</p>
+        <p>He had always been drawn to adventure. There was something about the unfamiliar that fascinated him—the places he had never been, the people he had yet to meet, and the experiences waiting somewhere beyond the boundaries of his ordinary days.</p>
+        <p>He was not someone who needed every step of his journey figured out. Sometimes, the best part of an adventure was not knowing where it would lead.</p>
+        <p>To him, life was a collection of moments waiting to happen. Some would become memories, others would become lessons, and a few might turn into stories worth telling.</p>
+        <p>But even someone who loved adventure could never prepare for every unexpected turn.</p>
+        <p>And one of those turns was about to begin.</p>
+
+        <h3>A New Beginning</h3>
+        <p>The opportunity came in an unexpected way.</p>
+        <p>Jeo found himself stepping into a world far different from the one he had grown accustomed to. A place filled with unfamiliar faces, new personalities, and people carrying stories of their own.</p>
+        <p>He was entering <em>Pinoy Big Brother</em>.</p>
+        <p>For some, it was simply a reality television experience. For others, it was an opportunity to discover themselves, form friendships, and create memories that would last long after the cameras stopped rolling.</p>
+        <p>For Jeo, it was another adventure.</p>
+        <p>There were new people to meet, conversations to have, and experiences waiting around every corner. He entered with an open mind, not knowing exactly what the days ahead would bring.</p>
+        <p>Little did he know that among all the people he would encounter, one particular person would eventually become part of a story that many would remember.</p>
+
+        <h3>The Girl from Another World</h3>
+        <p>Her name was Gehlee.</p>
+        <p>Unlike Jeo, whose adventures had mostly taken place beyond the spotlight, Gehlee had already experienced a world that many could only dream of.</p>
+        <p>She was a K-pop idol, someone whose journey had taken her beyond familiar places and introduced her to a different kind of life. Music, performances, training, and the demands of the entertainment industry had become part of her everyday world.</p>
+        <p>She carried with her experiences that were different from Jeo's—different surroundings, different responsibilities, and a path that had brought her to where she was.</p>
+        <p>Yet, despite coming from a world so different from his, she was now standing in the same place, about to begin a new chapter of her own.</p>
+        <p>Two people. Two different journeys. Two separate worlds.</p>
+        <p>And somehow, their paths had led them to the same room.</p>
+
+        <h3>The First Crossing</h3>
+        <p>There was nothing extraordinary about the beginning.</p>
+        <p>No grand announcement could explain what was about to unfold. No one could have known which conversations would become memorable or which ordinary moments would later be remembered by the people watching.</p>
+        <p>It was simply a meeting between two individuals who had arrived from different places.</p>
+        <p>Jeo, the boy who loved adventure.</p>
+        <p>Gehlee, the girl whose journey had taken her to the world of K-pop.</p>
+        <p>They had their own stories before that moment, their own experiences, and their own reasons for being there.</p>
+        <p>Now, for the first time, those stories were about to share a page.</p>
+        <p>Perhaps that was the most interesting part of their encounter. Neither of them needed to know what the future held. They only had to begin where they were.</p>
+        <p>And sometimes, the most memorable stories do not begin with something extraordinary.</p>
+        <p>Sometimes, they begin with two unfamiliar faces crossing paths.</p>
+        <p class="ending">This was where the story of Jeo and Gehlee began.</p>
+        <div class="signature">— E.El</div>
+      </div>
+    </article>
+  </section>
+
+  <section id="chapter2">
+    <article class="reading">
+      <div class="chapter-heading"><span class="chapter-no">Chapter II</span><h2>Unfamiliar Faces, Familiar Moments</h2><div class="chapter-sub">The beginning of familiarity</div></div>
+      <div class="story">
+        <h3>The Beginning of Familiarity</h3>
+        <p>At first, they were simply two people sharing the same space.</p>
+        <p>Like everyone else, Jeo and Gehlee were still getting used to the people around them. There were new faces, different personalities, and countless little things to discover.</p>
+        <p>They didn't know much about each other yet. Their first impressions were only the beginning, and there was still plenty of time for those impressions to change.</p>
+        <p>Sometimes, getting to know someone starts with the smallest things.</p>
+
+        <h3>Conversations Without a Script</h3>
+        <p>Not every conversation needs a reason to happen.</p>
+        <p>Sometimes, it begins with a simple question, a random remark, or a joke that catches someone by surprise.</p>
+        <p>For Jeo and Gehlee, these little exchanges became part of the experience of getting to know one another.</p>
+        <p>There was no need to rush anything. They were simply sharing conversations, reacting to situations, and becoming more familiar with each other's presence.</p>
+        <p>And little by little, the awkwardness of being strangers began to feel less noticeable.</p>
+
+        <h3>Little Moments, Little Discoveries</h3>
+        <p>Not every meaningful moment has to be extraordinary.</p>
+        <p>Some memories are made from the simplest things: a shared laugh, a playful exchange, or a conversation that lasts a little longer than expected.</p>
+        <p>These moments might seem ordinary to the people experiencing them, but sometimes, they become the ones remembered most.</p>
+        <p>For Jeo and Gehlee, every interaction added another small piece to the story they were unknowingly building.</p>
+        <p>There was no grand announcement, no promise of what would happen next. Just moments passing, one after another.</p>
+
+        <h3>More Than First Impressions</h3>
+        <p>First impressions can tell people a little about someone, but time reveals much more.</p>
+        <p>As the days went by, there were more opportunities for Jeo and Gehlee to see beyond their initial encounters. They were no longer just unfamiliar faces in the same place.</p>
+        <p>They were becoming part of each other's everyday experiences.</p>
+        <p>Perhaps that was what made the beginning of their story interesting. Nothing needed to be defined, and nothing needed to be expected.</p>
+        <p>For now, it was enough to let things happen naturally.</p>
+        <p class="ending">Because sometimes, a connection begins long before anyone realizes that a story is being written.</p>
+        <div class="signature">— E.El</div>
+      </div>
+    </article>
+  </section>
+
+  <section id="author">
+    <div class="section-kicker">Behind the pages</div>
+    <h2>A Note from the Author</h2>
+    <p class="author-note">This book was created as a small appreciation of a story that captured the attention and imagination of its readers. It does not promise an ending or make claims about the people behind the names. It simply keeps a place for the moments that inspired these pages.</p>
+    <p class="disclaimer">Disclaimer: This is an unofficial, fan-written creative work. It is not affiliated with Jeo, Gehlee, their representatives, or Pinoy Big Brother. The writing is imaginative and should not be taken as a statement of their private thoughts, feelings, or relationship status.</p>
+  </section>
+</main>
+
+<footer>
+  JEOLEE · THE PAGES WE WERE NEVER PROMISED
+  <span>Written with appreciation — E.El</span>
+</footer>
+<script>
+function toggleMenu(){
+  const nav=document.getElementById('navLinks');
+  const btn=document.querySelector('.menu-btn');
+  const open=nav.classList.toggle('open');
+  btn.setAttribute('aria-expanded',String(open));
+}
+function closeMenu(){
+  document.getElementById('navLinks').classList.remove('open');
+  document.querySelector('.menu-btn').setAttribute('aria-expanded','false');
+}
+</script>
+</body>
+</html>
